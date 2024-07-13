@@ -4,17 +4,22 @@
 
 :root {
     --primary: #fe2c55;
+    --default-layout-header-height: 70px;
+    --default-layout-header-width: 90%;
 }
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 html {
     font-size: 62.5%;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family:  BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizespeed;
 }
+

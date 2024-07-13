@@ -1,0 +1,26 @@
+
+.wraper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: var(--default-layout-header-width, 90%);
+    min-height: 1000px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
+}
+
+.content {
+    flex: 1;
+    background-color: #fff;
+    min-height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
