@@ -2,10 +2,31 @@ import styles from "./Header.module.scss";
 import clsx from "clsx";
 import images from "~/assets/images";
 import "bootstrap/dist/css/bootstrap.min.css"; // lấy styles của version bootstrap mà bạn install.
-import { FaSearch,  FaRegBell } from "react-icons/fa";
-import { PiShoppingCartSimpleBold } from "react-icons/pi";
+import { FaSearch} from "react-icons/fa";
+
 import { Link } from "react-router-dom";
+import {  useEffect, useState } from "react";
+import LoginOrRegister from "~/Services/Account/LoginOrRegister";
+import BtnLogin from "~/Services/Header/BtnLogin";
+import UserInfoHeader from "~/Services/Header/UserInfoHeader";
 function Header() {
+  const [stateAccount, setStateAccount] = useState("");
+  const [userInfo, setUserInfo] = useState(null);
+
+  const startLoginOrRegister = (a) => {
+    setStateAccount("");
+    setStateAccount(a);
+  };
+  const getToken = () => {
+    return localStorage.getItem("authToken");
+  };
+  useEffect(() => {
+    setUserInfo(null);
+    if (getToken() != null) {
+      setUserInfo(localStorage.getItem("role"));
+    }
+  }, [stateAccount]);
+
   return (
     <header className={clsx(styles.wraper)}>
       <div className={clsx(styles.inner)}>
@@ -15,7 +36,9 @@ function Header() {
             <img src={images.logo} alt="FunDev" />
           </Link>
           <b>FunDev</b>
-          <Link className={clsx(styles.btn_shop_link)} to="./shop" >Shop</Link>
+          <Link className={clsx(styles.btn_shop_link)} to="/shop">
+            Shop
+          </Link>
         </div>
         {/* search input */}
         <div className={clsx(styles.search)}>
@@ -25,15 +48,16 @@ function Header() {
           </div>
         </div>
         <div className={clsx(styles.accoutManager)}>
-          <PiShoppingCartSimpleBold />
-          <FaRegBell  />
-          <Link className={clsx(styles.accoutManager_loggin)} to="/login">
-            SignIn
-          </Link>
-          <Link className={clsx(styles.accoutManager_loggin)} to="/Register">
-            SignUp
-          </Link>
+            {userInfo != null ? (
+              <UserInfoHeader info={userInfo} startLoginOrRegister={startLoginOrRegister}></UserInfoHeader>
+            ) : (
+                <BtnLogin  startLoginOrRegister={startLoginOrRegister} />
+            )}
         </div>
+        <LoginOrRegister
+          state={stateAccount}
+          setState={startLoginOrRegister}
+        ></LoginOrRegister>
       </div>
     </header>
   );

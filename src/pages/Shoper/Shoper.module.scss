@@ -1,0 +1,105 @@
+.container {
+    padding-top: 70px ;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// shop info
+.Shoper_info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.Shoper_info_left {
+    display: flex;
+    flex-direction: column;
+    width: 390px;
+    height: 135px;
+    background-color: #393939;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+.Shoper_info_left_avt {
+    display: flex;
+    flex-direction: row;
+}
+.Shoper_info_left_avt img{
+    border: 2px solid #7e7e7e;
+    border-radius: 50%;
+}
+
+.Shoper_info_left_avt_item {
+    margin: 10px 0px 0px 10px;
+}
+.Shoper_info_left_avt_item_title {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.Shoper_info_left_avt_item_description {
+    font-size: 0.85em;
+}
+
+.Shoper_info_left_btn {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.Shoper_info_left_btn_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    width: 48%;
+    padding: 5px 0px;
+    height: 1.5em;
+}
+
+.Shoper_info_right {
+    width: 600px;
+    height: 135px;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+
+}
+.Shoper_info_right_item p {
+    width: 100%;
+    padding: 10px 0px;
+    margin: 0;
+    font-size: 1em;
+}
+
+// List product
+.Shoper_product {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.Shoper_product_container {
+    display: flex;
+    flex-direction: column;
+    width:  var(--default-layout-header-width);
+}
+.Shoper_product_header {
+    margin-left: calc(90px/10);
+    width: 100%;
+    margin-bottom: 30px;
+}   
+.Shoper_product_header_title {
+    font-size: 3em;
+    font-weight:500;
+}
+.Shoper_product_header_content {
+    color: #7e7e7e;
+}
+

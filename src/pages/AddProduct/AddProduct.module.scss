@@ -1,0 +1,31 @@
+
+.wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.container {
+    width: var(--default-layout-header-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.container_form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+.container_form input {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,15 @@
+.container {
+  background-color: #cccccc56;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+.dis_none {
+  display: none;
+}
+.dis_flex {
+  display: flex !important;
+}

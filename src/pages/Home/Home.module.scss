@@ -10,7 +10,7 @@
     position: relative;
     width: 100%;
     height: 700px;
-    background-image: url('../../assets/images/Sale.png');
+    background-image: url('../../assets/images/redmi.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,6 +35,18 @@
     height: 100%;
     color: #fff;
 }
+.home_introduct_container a {
+    color: #fff;
+    margin-top: 40px;
+    padding-bottom: 8px;
+    text-decoration: none;
+    width: 162.3px;
+    border-bottom: 2.5px solid #fff;
+    &:hover {
+        font-weight: 500;
+        width: 164px;
+    }
+}
 .home_introduct_name {
     font-size: 25px !important;
     font-weight: bold;
@@ -57,6 +69,7 @@
     width:  var(--default-layout-header-width);
 }
 .home_product_header {
+    margin-left: calc(90px/10);
     width: 100%;
     margin-bottom: 30px;
 }   
@@ -67,45 +80,4 @@
 .home_product_header_content {
     color: #7e7e7e;
 }
-.home_product_list {
-    width : 100%;
-    min-height: 600px;
-    display: flex;
-    justify-content: center;
-}
-.home_product_list ul {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content:space-between;
-    padding: 0;
-}
-.home_product_list_item {
-    width: 23%;
-    padding-bottom: 30px;
-    margin-bottom: 100px;
-    list-style-type: none;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.home_product_list_item_img{
-    background-color: #f8f8f8;
-    width: 100%;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.home_product_list_item_price {
-    font-weight: 500;   
-}
-.home_product_list_item_name{
 
-}
-.home_product_list_item_quantity{
-
-}

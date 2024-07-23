@@ -9,7 +9,7 @@
 
 .container {
     width: 100%;
-    min-height: 1000px;
+    min-height: 700px;
     background-color: #fff;
     display: flex;
     flex-direction: row;
@@ -18,8 +18,5 @@
 .content {
     flex: 1;
     background-color: #fff;
-    min-height: 1000px;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }

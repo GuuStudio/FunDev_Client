@@ -13,7 +13,12 @@
 .list_category {
     margin-bottom: 30px !important;
 }
+
 .item_category{
     list-style-type: none;
     padding: 10px 0px;
+    &:hover {
+        cursor: pointer;
+        font-weight: 500;
+    }
 }
