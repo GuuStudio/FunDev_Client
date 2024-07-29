@@ -10,6 +10,7 @@ import Shop from "~/pages/Shop"
 import ProductDetail from "~/pages/ProductDetail"
 import Shoper from "~/pages/Shoper"
 import AddProduct from "~/pages/AddProduct"
+import UpdateProduct from "~/pages/UpdateProduct"
 
 
 // Public Routes
@@ -17,6 +18,7 @@ export const publicRoutes = [
     {path: "/", component: Home, layout: HomeLayout},
     {path: "/shoper", component: Shoper, layout: HomeLayout},
     {path: "/addproduct", component: AddProduct, layout: HomeLayout},
+    {path: "/updateproduct/:id", component: UpdateProduct, layout: HomeLayout},
     {path: "/shop", component: Shop, layout: DefaultLayout},
     {path: "/profile", component: Profile , layout: HomeLayout},
     {path: "/upload", component: Upload , layout: OnlyHeaderLayout},

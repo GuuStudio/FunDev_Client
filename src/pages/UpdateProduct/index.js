@@ -1,13 +1,14 @@
 import clsx from "clsx";
-import Styles from "./AddProduct.module.scss";
+import Styles from "./UpdateProduct.module.scss";
 import { useEffect, useState } from "react";
 import api, { apiFormData } from "~/Services/Api/api";
 import "bootstrap/dist/css/bootstrap.min.css"; // lấy styles của version bootstrap mà bạn install.
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import uploadImage from "~/assets/images/uploadImage.png";
 
-function AddProduct() {
+function UpdateProduct() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -23,7 +24,7 @@ function AddProduct() {
     const formData = new FormData();
     setUserId(localStorage.getItem("userId"));
     const productData = {
-      id: "0",
+      id,
       productName,
       description,
       price,
@@ -35,24 +36,14 @@ function AddProduct() {
     Object.keys(productData).forEach((key) => {
       formData.append(key, productData[key]);
     });
-
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
     try {
-      // const response = await fetch('https://localhost:7167/api/Products', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-      //   },
-      //   body: JSON.stringify(productData)
-      // });
-      const response = await apiFormData.post("/api/Products", formData);
-      const id = response.data.id;
+      await apiFormData.put(`/api/Products/${id}`, formData);
+
+      alert("Product đã được cập nhật:");
       navigate(`/productdetail/${id}`);
-      alert("Product đã được thêm:");
-      setProductName("");
-      setDescription("");
-      setPrice(0);
-      setQuantity(0);
       // Xử lý phản hồi ở đây (ví dụ: hiển thị thông báo thành công)
     } catch (error) {
       console.log(error);
@@ -79,10 +70,18 @@ function AddProduct() {
     api.get("/api/Categories").then((res) => {
       setCategories(res.data);
     });
-    api.get("/api/Categories/1").then((res) => {
-      setCateId(res.data.id);
-    });
-  }, []);
+    api.get(`/api/Products/${id}`)
+        .then(res => res.data)
+        .then(res => {  
+          setFileImage(res.imageUrl);
+          setPreviewImage(res.imageUrl);
+          setProductName(res.productName);
+          setDescription(res.description)
+          setPrice(res.price);
+          setQuantity(res.quantity);
+          setCateId(res.cateId);
+        })
+  }, [id]);
   return (
     <div className={clsx(Styles.wrap)}>
       <div className={clsx(Styles.container)}>
@@ -159,4 +158,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default UpdateProduct;
