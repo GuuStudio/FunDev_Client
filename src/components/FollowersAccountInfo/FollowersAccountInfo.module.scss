@@ -1,0 +1,24 @@
+.Shoper_info_right_item {
+    width: 100%;
+    margin: 0; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.Shoper_info_right_item_value {
+    width: calc((100% - 40px)/2);
+    padding-left: calc(20px/4);
+    padding-right: calc(20px/4);
+    min-width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.Shoper_info_right_item_value p {
+    font-size: 2em;
+    font-weight: 500;
+    height: 50px;
+}

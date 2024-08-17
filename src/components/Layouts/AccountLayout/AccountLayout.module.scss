@@ -5,12 +5,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .container {
     width: var(--default-layout-header-width, 90%);
-    min-height: 1000px;
     background-color: #fff;
     display: flex;
     flex-direction: row;
@@ -18,10 +16,10 @@
 }
 
 .content {
+    margin-left: 160px;
     display: flex;
     flex: 1;
     background-color: #fff;
-    min-height: 1000px;
     justify-content: center;
-    align-items: center;
+    margin-top: 40px;
 }

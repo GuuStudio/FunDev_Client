@@ -1,0 +1,19 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// List product
+.Shoper_product {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.Shoper_product_container {
+    display: flex;
+    flex-direction: column;
+    width:  var(--default-layout-header-width);
+}
+

@@ -1,0 +1,37 @@
+.wraper {
+    width: 160px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding-top: 60px;
+    z-index: 2;
+    // box-shadow: 1px 1px 0px 0.5px rgb(0 0 0 / 12%);
+    position: fixed;
+    top: 70;
+}
+.manager_account_btn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.focus {
+    font-weight: 700 !important;
+}
+.manager_account_btn button {
+    display: flex;
+    justify-content: flex-start;
+    border: none; 
+    background-color: #fff;
+    margin-bottom: 60px;
+    font-weight: 400;
+    &:hover {
+        color: var(--primary-hover);
+    }
+}
+.manager_account_btn svg {
+    height: 24px;
+    width: 24px;
+    margin-right: 20px;
+}
