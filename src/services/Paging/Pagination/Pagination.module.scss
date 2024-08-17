@@ -1,0 +1,101 @@
+
+.active {
+    background-color: #5371615f !important;
+    color: #000;
+    font-weight: 500;
+}
+.display_none {
+    display: none !important;
+}
+.home_product_list_wrap {
+    width: 100%;
+}
+.home_product_list {
+    width : 100%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.home_product_list_item button {
+    text-decoration: none;
+    color: #000;
+    transition: transform 0.2s ease-in-out;
+    border: none;
+    background-color: #00000000;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+        color:#4e7661 !important;
+        backface-visibility: hidden;
+    }
+}
+
+.home_product_list_item {
+    width: calc((100% - 90px) / 5);
+    margin-left: calc(90px / 10);
+    margin-right: calc(90px / 10);
+    min-width: 200px;
+    max-width: 300px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    list-style-type: none;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: start;
+    // border: 0.8px solid #e5e7eb;
+}
+.home_product_list_item_img {
+    width: 100%;
+}
+.home_product_list_item_img img{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    object-fit: cover;
+}
+.home_product_list_item_info {
+    width: 100%;
+    padding: 20px;
+    display: flex  ;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.home_product_list_item_price {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.home_product_list_item_name{
+    margin: 0;
+    font-size: 1em;
+}
+.home_product_list_item_quantity,
+.home_product_list_item_shop_name{
+    font-size: 0.9em;
+
+}
+
+// 
+.perpages_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 180px;
+}
+
+.perpages_list button {
+    padding: 5px 15px;
+    border: none;
+    margin: 0px 20px;
+    border-radius: 50%;
+    background-color: transparent;
+}

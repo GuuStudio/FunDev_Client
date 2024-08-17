@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { publicRoutes } from "./routes";
+import { publicRoutes } from "./routes/route";
 import { Fragment } from "react";
-
+import Header from "./pages/Header/Header";
+import PublicContext from "./services/PublicContext";
 
 function App() {
   return (
     <Router>
-        <div className="App">
+      <div className="App">
+        <PublicContext>
+          <Header />
           <Routes>
             {publicRoutes.map((route, index) => {
               let Layout = route.layout || Fragment;
@@ -24,7 +27,8 @@ function App() {
               );
             })}
           </Routes>
-        </div>
+        </PublicContext>
+      </div>
     </Router>
   );
 }

@@ -1,0 +1,75 @@
+
+.wraper {
+    width: 100%;
+    height:  var(--default-layout-header-height, 60px);
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    background-color:#ffff;
+}
+
+
+.inner {
+    height: 100%;
+    width: var(--default-layout-header-width, 90%);    
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    height: 100%;
+    width: var(30%);    
+    background-color:#ffff;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.btn_shop_link {
+    margin-left: 40px;
+    color: #000;
+    text-decoration: none;
+}
+.search {
+    display:  flex;
+    flex-direction: row;
+    border-width: 0.1px;
+    border-color: rgba(118, 118, 118, 0.425);
+    border-style: solid;
+    border-radius: 20px;
+    width: 350px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    background-color: #e6e6e61b;
+}
+.search input {
+    border: none;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.search_submit {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    &:hover {
+        cursor: pointer;
+    }    
+}
+.accoutManager {
+    display: flex;  
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 200px;
+}

@@ -1,0 +1,59 @@
+.wrap {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    padding-top: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+.updateAccountInfo_form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.updateAccountInfo_form_item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 20px;
+
+}
+.updateAccountInfo_form_item label{
+    margin-right: 30px;
+    text-align: end;
+}
+.updateAccountInfo_form_item input{
+    border: none;
+    outline: none;
+    box-shadow: 0px 1px 0px rgb(0 0 0 / 12%);
+    padding: 0px 14px;
+}
+.updateAccountInfo_form button {
+    border: none;
+    margin-top: 30px;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: var(--primary);
+    &:hover {
+        background-color: var(--primary-hover);
+    }
+}
+.form_cancel {
+    margin-left: 10px;
+    padding: 5px 10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #aaaaaa;
+    border-radius: 3px;
+    &:hover {
+        background-color: #959292;
+        cursor: pointer;
+    }
+}

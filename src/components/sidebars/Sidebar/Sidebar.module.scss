@@ -1,0 +1,25 @@
+.wraper {
+    width: 200px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding-top: 155px;
+    top: 0;
+    position: sticky;
+}
+.category_title {
+    
+}
+.list_category {
+    margin-bottom: 30px !important;
+}
+
+.item_category{
+    list-style-type: none;
+    padding: 10px 0px;
+    &:hover {
+        cursor: pointer;
+        font-weight: 500;
+    }
+}
