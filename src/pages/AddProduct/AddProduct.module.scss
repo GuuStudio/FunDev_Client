@@ -5,6 +5,9 @@
     justify-content: center;
     
 }
+.disabled {
+    background-color: #666666 !important;
+}
 .container {
     width: var(--default-layout-header-width);
     display: flex;

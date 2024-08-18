@@ -36,7 +36,6 @@ function LoginOrRegister({ state , setState }) {
       >
         <Register state={state} setState={setState} />
       </div>
-      {console.log(stateAccount)}
     </div>
   );
 }

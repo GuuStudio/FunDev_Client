@@ -18,10 +18,12 @@ function AddProduct() {
   const [categories, setCategories] = useState([]);
   const [fileImage, setFileImage] = useState(undefined);
   const [previewImage, setPreviewImage] = useState(uploadImage);
+  const [loadingState, setLoadingState] = useState(false);
 
   const ShowNotificationTab = useContext(ShowNotificationContext);
   const addProduct = async (e) => {
     e.preventDefault();
+    setLoadingState(true);
     const formData = new FormData();
     setUserId(localStorage.getItem("userId"));
     const productData = {
@@ -39,41 +41,37 @@ function AddProduct() {
     });
 
     try {
-      // const response = await fetch('https://localhost:7167/api/Products', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${localStorage.getItem("authToken")}`
-      //   },
-      //   body: JSON.stringify(productData)
-      // });
       const response = await apiFormData.post("/api/Products", formData);
       const id = response.data.id;
       navigate(`/productdetail/${id}`);
-      ShowNotificationTab( "Success" ,"Add product successfully");
+      ShowNotificationTab("Success", "Add product successfully");
+      setLoadingState(false);
       setProductName("");
       setDescription("");
       setPrice(0);
       setQuantity(0);
       // Xử lý phản hồi ở đây (ví dụ: hiển thị thông báo thành công)
     } catch (error) {
-      ShowNotificationTab(  "Error" ,`Error : ${error.message}`);
+      ShowNotificationTab("Error", `Error : ${error.message}`);
+      setLoadingState(false);
       // Xử lý lỗi ở đây (ví dụ: hiển thị thông báo lỗi)
     }
   };
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFileImage(file);
+    if (e.target.files[0] != null) {
+      const file = e.target.files[0];
+      setFileImage(file);
 
-    // Create preview
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewImage(reader.result);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      setPreviewImage(null);
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        setPreviewImage(null);
+      }
     }
   };
   useEffect(() => {
@@ -92,11 +90,7 @@ function AddProduct() {
             <div className={clsx(Styles.form_preview)}>
               <img src={previewImage} alt="Preview" />
             </div>
-            <input
-              type="file"
-              onChange={handleFileChange}
-              accept="image/*"
-            />
+            <input type="file" onChange={handleFileChange} accept="image/*" />
           </div>
           <div className={clsx(Styles.text_form)}>
             <label htmlFor="productName">Name:</label>
@@ -152,7 +146,13 @@ function AddProduct() {
                 );
               })}
             </select>
-            <button type="submit">Add</button>
+            <button
+              disabled={loadingState}
+              className={clsx({ [Styles.disabled]: loadingState })}
+              type="submit"
+            >
+              Add
+            </button>
           </div>
         </form>
       </div>

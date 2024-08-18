@@ -4,15 +4,17 @@ import images from "~/assets/images";
 import "bootstrap/dist/css/bootstrap.min.css"; // lấy styles của version bootstrap mà bạn install.
 import { FaSearch} from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {  useEffect, useState } from "react";
 import UserInfoHeader from "~/components/HeaderComponent/UserInfoHeader";
 import BtnLogin from "~/components/HeaderComponent/BtnLogin";
 import LoginOrRegister from "~/components/Account/LoginOrRegister";
 
 function Header() {
+  const navigate = useNavigate()
   const [stateAccount, setStateAccount] = useState("");
   const [userInfo, setUserInfo] = useState(null);
+  const [searchContent, setSearchContent] = useState("");
 
   const startLoginOrRegister = (a) => {
     setStateAccount("");
@@ -27,7 +29,9 @@ function Header() {
       setUserInfo(localStorage.getItem("UserAvatar"));
     }
   }, [stateAccount]);
-
+  const handleSearch = () => {
+    navigate(`/search/${searchContent}`)
+  }
   return (
     <header className={clsx(styles.wraper)}>
       <div className={clsx(styles.inner)}>
@@ -43,8 +47,8 @@ function Header() {
         </div>
         {/* search input */}
         <div className={clsx(styles.search)}>
-          <input type="text" placeholder="Search..." />
-          <div className={clsx(styles.search_submit)}>
+          <input type="text" placeholder="Search..." onChange={(e) => setSearchContent(e.target.value)} />
+          <div onClick={handleSearch} className={clsx(styles.search_submit)}>
             <FaSearch />
           </div>
         </div>

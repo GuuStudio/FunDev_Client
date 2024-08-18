@@ -33,7 +33,6 @@ function Store() {
       const follow = await apiFormData.post('/api/UserFollows/check', formdata)
       if (follow.status === 200 || follow.status ===201) {
         setIsFollow(follow.data)
-        console.log(follow.data)
       }
     }
     checkFollow()
