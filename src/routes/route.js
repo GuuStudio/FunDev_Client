@@ -5,7 +5,7 @@ import Home from "~/pages/Home/Home"
 import Search from "~/pages/Search"
 import Shop from "~/pages/Shop/Shop"
 import ProductDetail from "~/pages/ProductDetail/ProductDetail"
-import Shoper from "~/pages/Shoper/Store"
+
 import AddProduct from "~/pages/AddProduct/AddProduct"
 import UpdateProduct from "~/pages/UpdateProduct/UpdateProduct"
 import AccountLayout from "~/components/layouts/AccountLayout/AccountLayout"
@@ -14,6 +14,7 @@ import ProfileInfo from "~/pages/ProfileInfo/ProfileInfo"
 import Cart from "~/pages/Cart/Cart"
 import Orders from "~/pages/order/Orders/Orders"
 import Ordering from "~/pages/order/Ordering/Ordering"
+import Store from "~/pages/Store/Store"
 
 
 
@@ -21,7 +22,7 @@ import Ordering from "~/pages/order/Ordering/Ordering"
 // Public Routes
 export const publicRoutes = [
     {path: "/", component: Home, layout: HomeLayout},
-    {path: "/shoper", component: Shoper, layout: HomeLayout},
+    {path: "/store/:id", component: Store, layout: HomeLayout},
     {path: "/addproduct", component: AddProduct, layout: HomeLayout},
     {path: "/updateproduct/:id", component: UpdateProduct, layout: HomeLayout},
     {path: "/shop", component: Shop, layout: DefaultLayout},
