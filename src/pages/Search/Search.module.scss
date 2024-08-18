@@ -1,0 +1,25 @@
+// List product
+
+.shop_product {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.shop_product_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.shop_product_header {
+    margin-left: calc(90px/10);
+    width: 100%;
+    margin-bottom: 30px;
+}   
+.shop_product_header_title {
+    font-size: 3em;
+    font-weight:500;
+}
+.shop_product_header_content {
+    color: #7e7e7e;
+}

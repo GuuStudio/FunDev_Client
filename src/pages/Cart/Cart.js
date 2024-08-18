@@ -10,8 +10,11 @@ const arrayItem = ["Product", "Price", "Quantity", "Total Amount", "Action"]
 function Cart () {
     const [cartItems , setCartItems] = useState([]);
     useEffect ( () => {
-        api.get('/api/CartItems')
-        .then(res => setCartItems(res.data))
+        if (localStorage.getItem("authToken") != null) {
+            api.get('/api/CartItems')
+            .then(res => setCartItems(res.data))
+        }
+
 
     }, [])
     const resetComponent = () => {

@@ -14,7 +14,7 @@ function ProductDetail() {
   const [product, setProduct] = useState({});
   const [img, setImg] = useState(cosmectics);
   const [quantityBuy, setQuantityBuy] = useState(1);
-  const [ customerInfo , setCustomerInfo] = useState(undefined);
+  const [loadingState, setLoadingState] = useState(false)
 
   useEffect( () => {
     const fetchdata = async() => {
@@ -31,11 +31,7 @@ function ProductDetail() {
       top: 0,
       behavior: 'smooth',
     })
-    const userid = localStorage.getItem("userId")
-    api
-    .get(`api/Users/${userid}`)
-    .then(response => response.data)
-    .then(res => setCustomerInfo(res))
+
   }, [id])
 
   function handleQuantity(a) {
@@ -50,6 +46,7 @@ function ProductDetail() {
     }
   }
   const addToCart =  async( ) => {
+    setLoadingState(true)
     const formData = new FormData()
     formData.append('productId', product.id)
     formData.append('unitPrice', product.price)
@@ -75,33 +72,39 @@ function ProductDetail() {
     }
   }
   const addOrder =  async( ) => {
-
-    
+    setLoadingState(true)
     const formData = new FormData()
     formData.append('productId', product.id)
     formData.append('unitPrice', product.price)
     formData.append('quantity', quantityBuy)
     formData.append('customerId', localStorage.getItem("userId"))
     formData.append('storeId', product.userId)
-    formData.append('phoneNumber', customerInfo.phoneNumber)
-    formData.append('shippingAddress', customerInfo.addressHome)
-    try {
-      const response = await apiFormData.post('/api/Order', formData);
-      ShowNotificationTab("Success", response.data)
-      navigate('/ordering')
-    } catch (error) {
-      if (error.response) {
-        // Lỗi từ server với status code
-        ShowNotificationTab( "Error" , error.response.data);
-      } else if (error.request) {
-        // Yêu cầu được gửi nhưng không nhận được phản hồi
-        ShowNotificationTab(  "Error","Không nhận được phản hồi:" + error.request);
-      } else {
-        // Lỗi khi thiết lập request
-        ShowNotificationTab( "Error","Lỗi:" + error.response.data);
+
+    const userid = localStorage.getItem("userId")
+    const customerInfo = await api.get(`api/Users/${userid}`)
+    if (customerInfo.status ===200 || customerInfo.status === 201 ) {
+      formData.append('phoneNumber', customerInfo.phoneNumber)
+      formData.append('shippingAddress', customerInfo.addressHome)
+      try {
+        const response = await apiFormData.post('/api/Order', formData);
+        ShowNotificationTab("Success", response.data)
+        navigate('/ordering')
+      } catch (error) {
+        if (error.response) {
+          // Lỗi từ server với status code
+          ShowNotificationTab( "Error" , error.response.data );
+        } else if (error.request) {
+          // Yêu cầu được gửi nhưng không nhận được phản hồi
+          ShowNotificationTab(  "Error","Không nhận được phản hồi:" + error.request);
+        } else {
+          // Lỗi khi thiết lập request
+          ShowNotificationTab( "Error","Lỗi:" + error.response.data);
+        }
+        // Xử lý lỗi cụ thể (ví dụ: hiển thị thông báo cho người dùng)
       }
-      // Xử lý lỗi cụ thể (ví dụ: hiển thị thông báo cho người dùng)
     }
+
+
   }
 
   return (
@@ -112,8 +115,9 @@ function ProductDetail() {
         </div>
         <div className={clsx(Styles.product_info)}>
           <div className={clsx(Styles.product_info_title)}>{product.productName}</div>
-          <div className={clsx(Styles.product_info_quantity)}>{product.quantity} left in stock</div>
           <div className={clsx(Styles.product_info_description)}>{product.description}</div>
+          <div className={clsx(Styles.product_info_quantity)}>{product.quantity} left in stock</div>
+
           <div className={clsx(Styles.product_info_size)}><b>Size:</b> XXL</div>
           <div className={clsx(Styles.product_info_price)}>
           {product.price} Dollar
@@ -125,8 +129,8 @@ function ProductDetail() {
             <button onClick={() => handleQuantity("Increase")}>+</button>
           </div>
             { (  product.userId !== localStorage.getItem("userId")) && (<div className={clsx(Styles.product_info_btn)}>
-            <button onClick={addToCart}><FaCartPlus/> Add to cart</button>
-            <button onClick={addOrder}>Buy</button>
+            <button disabled={loadingState} onClick={addToCart}><FaCartPlus/> Add to cart</button>
+            <button disabled={loadingState} onClick={addOrder}>Buy</button>
           </div>)}
 
         </div>
