@@ -4,22 +4,22 @@ import Styles from './FollowersAccountInfo.module.scss'
 import clsx from "clsx";
 import api from '~/ultils/Api/api';
 
-const FollowersAccountInfo = () => {
+const FollowersAccountInfo = ({userId}) => {
   const [ followers , setFollowes] =useState([])
   const [ products , setProducts] =useState([])
   const [ following , setFollowing] =useState([])
   const [ createAt , setCreateAt] =useState("")
   useEffect (()=> {
-    const id = localStorage.getItem("userId");
+
     const fetchUser = async () => {
-        const response = await api.get(`api/Users/${id}`)
+        const response = await api.get(`api/Users/${userId}`)
         setFollowes(response.data.followers)
         setProducts(response.data.productModels)
         setFollowing(response.data.following)
         setCreateAt(response.data.createAt.split('T')[0])
      };
      fetchUser()  
-  },[])
+  },[userId])
   return (
     <div className={clsx(Styles.Shoper_info_right_item)}>
       <div className={clsx(Styles.Shoper_info_right_item_value)}>

@@ -2,13 +2,16 @@ import clsx from "clsx";
 import styles from "./Sidebar.module.scss";
 import { useEffect, useState } from "react";
 import api from "~/ultils/Api/api";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate()
   const [categories, setCategories] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect (() => {
     api.get("/api/Categories").then((res) => {setCategories(res.data)});
     api.get("/api/Users").then((res) => {setUsers(res.data.slice(0,5))});
+
   },[])
   return (
     <aside className={clsx(styles.wraper)}>
@@ -28,7 +31,7 @@ function Sidebar() {
         </h3>
         <ul className={clsx(styles.list_category)}>
           {users.map((user, index) => {
-            return (<li className={clsx(styles.item_category)} key={index}>{user.fullName}</li>)
+            return (<li onClick={ () => navigate(`/store/${user.id}`)} className={clsx(styles.item_category)} key={index}>{user.fullName}</li>)
           })}
         </ul>
       </div>

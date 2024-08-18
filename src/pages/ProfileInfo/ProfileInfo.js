@@ -144,7 +144,7 @@ function ProfileInfo() {
           </div>
         </div>
         <div className={clsx(Styles.Shoper_info_right)}>
-            < FollowersAccountInfo />
+            < FollowersAccountInfo userId={localStorage.getItem("userId")}/>
         </div>
       </div>
       < UpdateAccountInfo />

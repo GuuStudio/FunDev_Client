@@ -5,14 +5,14 @@ import {  FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Pagination from "~/services/Paging/Pagination";
+import api from "~/ultils/Api/api";
 
 function Home() {
 
   const [array, setArray] = useState([]);
   useEffect( () => {
-    fetch('https://localhost:7167/api/Products')
-      .then(response => response.json())
-      .then(json => setArray(json))
+    api.get('/api/Products')
+      .then(res => setArray(res.data))
   }, [])
   return (
     <div className={clsx(Styles.container)}>
@@ -44,110 +44,6 @@ function Home() {
             </p>
           </div>
           <div >
-              {/* <ul className={clsx(Styles.home_product_list)}>
-                <li className={clsx(Styles.home_product_list_item)}>
-                  <div className={clsx(Styles.home_product_list_item_img)}>
-                    <img width="100%" src={img} alt="Product"></img>
-                  </div>
-                  <div className={clsx(Styles.home_product_list_item_info)}>
-                    <p className={clsx(Styles.home_product_list_item_price)}>
-                      <FaDollarSign />
-                      300
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_name)}>
-                      My cosmetics beautifully
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_quantity)}>
-                      300 left in stock
-                    </p>
-                  </div>
-                </li>
-                <li className={clsx(Styles.home_product_list_item)}>
-                  <div className={clsx(Styles.home_product_list_item_img)}>
-                    <img width="100%" src={img} alt="Product"></img>
-                  </div>
-                  <div className={clsx(Styles.home_product_list_item_info)}>
-                    <p className={clsx(Styles.home_product_list_item_price)}>
-                      <FaDollarSign />
-                      300
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_name)}>
-                      My cosmetics beautifully
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_quantity)}>
-                      300 left in stock
-                    </p>
-                  </div>
-                </li>
-                <li className={clsx(Styles.home_product_list_item)}>
-                  <div className={clsx(Styles.home_product_list_item_img)}>
-                    <img width="100%" src={img} alt="Product"></img>
-                  </div>
-                  <div className={clsx(Styles.home_product_list_item_info)}>
-                    <p className={clsx(Styles.home_product_list_item_price)}>
-                      <FaDollarSign />
-                      300
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_name)}>
-                      My cosmetics beautifully
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_quantity)}>
-                      300 left in stock
-                    </p>
-                  </div>
-                </li>
-                <li className={clsx(Styles.home_product_list_item)}>
-                  <div className={clsx(Styles.home_product_list_item_img)}>
-                    <img width="100%" src={img} alt="Product"></img>
-                  </div>
-                  <div className={clsx(Styles.home_product_list_item_info)}>
-                    <p className={clsx(Styles.home_product_list_item_price)}>
-                      <FaDollarSign />
-                      300
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_name)}>
-                      My cosmetics beautifully
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_quantity)}>
-                      300 left in stock
-                    </p>
-                  </div>
-                </li>
-                <li className={clsx(Styles.home_product_list_item)}>
-                  <div className={clsx(Styles.home_product_list_item_img)}>
-                    <img width="100%" src={img} alt="Product"></img>
-                  </div>
-                  <div className={clsx(Styles.home_product_list_item_info)}>
-                    <p className={clsx(Styles.home_product_list_item_price)}>
-                      <FaDollarSign />
-                      300
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_name)}>
-                      My cosmetics beautifully
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_quantity)}>
-                      300 left in stock
-                    </p>
-                  </div>
-                </li>
-                <li className={clsx(Styles.home_product_list_item)}>
-                  <div className={clsx(Styles.home_product_list_item_img)}>
-                    <img width="100%" src={img} alt="Product"></img>
-                  </div>
-                  <div className={clsx(Styles.home_product_list_item_info)}>
-                    <p className={clsx(Styles.home_product_list_item_price)}>
-                      <FaDollarSign />
-                      300
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_name)}>
-                      My cosmetics beautifully
-                    </p>
-                    <p className={clsx(Styles.home_product_list_item_quantity)}>
-                      300 left in stock
-                    </p>
-                  </div>
-                </li>
-              </ul> */}
               <Pagination items={array} itemsPerPage={5} displayNone={true}/>
           </div>
         </div>
