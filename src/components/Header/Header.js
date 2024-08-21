@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {  useEffect, useState } from "react";
 import UserInfoHeader from "~/components/HeaderComponent/UserInfoHeader";
 import BtnLogin from "~/components/HeaderComponent/BtnLogin";
-import LoginOrRegister from "~/components/Account/LoginOrRegister";
+import LoginOrRegister from "~/components/account/LoginOrRegister";
 
 function Header() {
   const navigate = useNavigate()

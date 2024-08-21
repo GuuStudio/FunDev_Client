@@ -2,13 +2,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import clsx from "clsx";
 import Styles from "./Store.module.scss";
 import { useContext, useEffect, useState } from "react";
-import Pagination from "~/services/Paging/Pagination";
+import Pagination from "~/components/Paging/Pagination";
 import img from "~/assets/images/redmi.png";
 
 import { useParams } from "react-router-dom";
 import api, { apiFormData } from "~/ultils/Api/api";
 import FollowersAccountInfo from "~/components/FollowersAccountInfo/FollowersAccountInfo";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
 
 function Store() {
   const ShowNotificationTab = useContext(ShowNotificationContext)
@@ -35,7 +35,10 @@ function Store() {
         setIsFollow(follow.data)
       }
     }
-    checkFollow()
+    if (localStorage.getItem("authToken") != null) {
+      checkFollow()
+    }
+
 
   }, [id]);
   const handleFollow =  async () => {

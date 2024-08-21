@@ -5,6 +5,7 @@ import api, { apiFormData } from "~/ultils/Api/api";
 import "bootstrap/dist/css/bootstrap.min.css"; // lấy styles của version bootstrap mà bạn install.
 import { useNavigate, useParams } from "react-router-dom";
 import uploadImage from "~/assets/images/uploadImage.png";
+import { getCurrentUserId } from "~/services";
 
 function UpdateProduct() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function UpdateProduct() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
-  const [userId, setUserId] = useState(localStorage.getItem("userId"));
+  const [userId, setUserId] = useState(getCurrentUserId());
   const [cateId, setCateId] = useState(0);
   const [categories, setCategories] = useState([]);
   const [fileImage, setFileImage] = useState(undefined);
@@ -22,7 +23,7 @@ function UpdateProduct() {
   const addProduct = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    setUserId(localStorage.getItem("userId"));
+    setUserId(getCurrentUserId());
     const productData = {
       id,
       productName,

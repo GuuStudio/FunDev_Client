@@ -5,15 +5,18 @@ import { useEffect, useState } from "react";
 
 import NoCartItem from "~/components/NoCartItem/NoCartItem";
 import api from "~/ultils/Api/api";
-const CartTab = () => {
+const CartTab = ({setCartItemsLength}) => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   function handleNavigateCart() {
     navigate("/cart");
   }
   useEffect(() => {
-    api.get("/api/CartItems").then((res) => setCartItems(res.data));
-  }, []);
+    api.get("/api/CartItems").then((res) => {
+      setCartItems(res.data.slice(0,5))
+      setCartItemsLength(res.data.length)
+    });
+  }, [setCartItemsLength]);
   return (
     <div className={clsx(Styles.wrap)}>
       <h1>New products added</h1>

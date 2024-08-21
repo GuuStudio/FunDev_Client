@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import clsx from "clsx";
 import Styles from "./Search.module.scss";
-import Pagination from "~/services/Paging/Pagination";
+import Pagination from "~/components/Paging/Pagination";
 import React, { useState, useEffect} from "react";
 import api from "~/ultils/Api/api";
 import { useParams } from "react-router-dom";

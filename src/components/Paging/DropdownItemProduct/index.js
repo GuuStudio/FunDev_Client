@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Styles from "./DropdownItemProduct.module.scss";
 import { apiFormData } from "~/ultils/Api/api";
 import { useNavigate } from "react-router-dom";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
 
 function DropdownItemProduct({ item , resetProductList }) {
   const ShowNotificateTab = useContext(ShowNotificationContext)

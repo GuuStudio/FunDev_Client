@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import styles from './DefaultLayout.module.scss';
-import Footer from "../../../pages/Footer/Footer";
+import Footer from "../../Footer/Footer";
 import Sidebar from "~/components/sidebars/Sidebar";
 
 function DefaultLayout({children}) {

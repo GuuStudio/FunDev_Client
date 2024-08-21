@@ -4,38 +4,20 @@ import Styles from "./Login.module.scss";
 import { Link } from "react-router-dom";
 import images from "~/assets/images";
 import { MdOutlineNewLabel } from "react-icons/md";
-import api from "~/ultils/Api/api";
-import {jwtDecode} from 'jwt-decode';
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
+import { login } from "~/services";
 
 function Login({ state, setState }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const ShowNotificationTab = useContext(ShowNotificationContext)
-  const saveToken = async (token) => {
-    localStorage.setItem("authToken", token);
-    const decodedToken = jwtDecode(token);
-        // Lưu thông tin từ payload
-        localStorage.setItem('userId', decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
-        localStorage.setItem('userEmail', decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress']);
-        localStorage.setItem('role', decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']);
-        localStorage.setItem('tokenExpiration', decodedToken.exp);
-    const id = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
-    const response = await api.get(`/api/Users/${id}`);
-        localStorage.setItem('UserAvatar', response.data.userImageUrl);
-        localStorage.setItem('UserFullName', response.data.fullName);
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("/api/Accounts/SignIn", {
-        email,
-        password,
-      });
-      const token = response.data;
-      await saveToken(token);
+      await login(email, password)
       setState("");
       // Xử lý đăng nhập thành công.
       ShowNotificationTab( "Success" ,"Login success");
@@ -48,7 +30,7 @@ function Login({ state, setState }) {
         ShowNotificationTab(  "Error","Không nhận được phản hồi:" + error.request);
       } else {
         // Lỗi khi thiết lập request
-        ShowNotificationTab( "Error","Lỗi:" + error.response.data);
+        ShowNotificationTab( "Error","Lỗi:" + error.response);
       }
       // Xử lý lỗi cụ thể (ví dụ: hiển thị thông báo cho người dùng)
     }

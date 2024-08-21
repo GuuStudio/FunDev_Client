@@ -2,38 +2,41 @@ import clsx from "clsx";
 import Styles from "./Ordering.module.scss";
 
 import { useEffect, useState } from "react";
-import api from "~/ultils/Api/api";
-import NoProduct from "~/services/Product/NoProduct";
+import NoProduct from "~/components/product/NoProduct";
 import OrderingItem from "~/components/OrderingItem/OrderingItem";
+import { fetchOrdering } from "~/services";
 
 const arrayItem2 = ["Pending", "Shipped", "Completed", "Cancelled"];
 
 function Ordering() {
   const [currentbtn, setCurrentBtn] = useState("Pending");
   const [orders, setOrders] = useState([])
+  const [numberQuantity, setNumberQuantity] = useState({
+    Pending: 0,
+    Shipped: 0,
+    Completed: 0,
+    Cancelled: 0,
+  })
   useEffect ( () => {
-    const fetchOrders = async () => {
-      try {
-        const res = await api.get('api/Order/ordering') 
-        if (res.status === 200 || res.status === 201) {
-          setOrders(res.data.filter(od => od.status === currentbtn))
-        }
-      } catch {
-        console.log("erroe get api orders list")
+    const fetch = async () => {
+      const res = await fetchOrdering();
+      if (res.data) {
+        setOrders(res.data.filter((od) => od.status === currentbtn));
+        setNumberQuantity({
+          Pending: res.data.filter((od) => od.status === "Pending").length,
+          Shipped: res.data.filter((od) => od.status === "Shipped").length,
+          Completed: res.data.filter((od) => od.status === "Completed").length,
+          Cancelled: res.data.filter((od) => od.status === "Cancelled").length,
+        })
       }
-
-    }
-    fetchOrders()
+    };
+    fetch();
   },[currentbtn])
   const handleClick = async(para) => {
     setCurrentBtn(para)
-    try {
-      const res = await api.get('api/Order/ordering') 
-      if (res.status === 200 || res.status === 201) {
-        setOrders(res.data.filter(od => od.status === currentbtn))
-      }
-    } catch {
-      console.log("error get api orders list")
+    const res = await fetchOrdering();
+    if (res.data) {
+      setOrders(res.data.filter((od) => od.status === currentbtn));
     }
   }
   return (
@@ -44,7 +47,7 @@ function Ordering() {
             {arrayItem2.map((item, index) => {
               return (
                 <li key={index} className={clsx(Styles.header_item, {[Styles.active]: item === currentbtn})} onClick={() => handleClick(item)}>
-                  {item}
+                  {item} {`(${numberQuantity[item]})`}
                 </li>
               );
             })}

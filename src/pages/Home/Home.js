@@ -4,7 +4,7 @@ import Styles from "./Home.module.scss";
 import {  FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Pagination from "~/services/Paging/Pagination";
+import Pagination from "~/components/Paging/Pagination";
 import api from "~/ultils/Api/api";
 
 function Home() {
