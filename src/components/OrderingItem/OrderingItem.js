@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Styles from "./OrderingItem.module.scss";
 import api from "~/ultils/Api/api";
 import { useContext } from "react";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
 import { useNavigate } from "react-router-dom";
 
 const OrderingItem = ({ order, currentbtn, setCurrentBtn }) => {
@@ -42,7 +42,7 @@ const OrderingItem = ({ order, currentbtn, setCurrentBtn }) => {
     <div className={clsx(Styles.order_info)}>
       <ul>
         <li className={clsx(Styles.content_item)}>
-          <h6><b>Store:</b>{order.store.fullName}</h6>
+          <h6><b>Store: </b>{order.store.fullName}</h6>
           <nav>
             <div>
               <p>{currentbtn}:</p>

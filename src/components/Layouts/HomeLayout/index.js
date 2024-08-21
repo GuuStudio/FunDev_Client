@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import styles from './HomeLayout.module.scss';
-import Footer from "../../../pages/Footer/Footer";
+import Footer from "../../Footer/Footer";
 
 function HomeLayout({children}) {
     return ( 

@@ -5,7 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from "react";
 import api, { apiFormData } from "~/ultils/Api/api";
 import { FaCartPlus } from "react-icons/fa";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
+import { getCurrentUserId } from "~/services";
 
 function ProductDetail() {
   const ShowNotificationTab = useContext(ShowNotificationContext)
@@ -51,7 +52,7 @@ function ProductDetail() {
     formData.append('productId', product.id)
     formData.append('unitPrice', product.price)
     formData.append('quantity', quantityBuy)
-    formData.append('customerId', localStorage.getItem("userId"))
+    formData.append('customerId', getCurrentUserId())
     formData.append('storeId', product.userId)
     try {
       const response = await apiFormData.post('/api/CartItems', formData);
@@ -77,14 +78,15 @@ function ProductDetail() {
     formData.append('productId', product.id)
     formData.append('unitPrice', product.price)
     formData.append('quantity', quantityBuy)
-    formData.append('customerId', localStorage.getItem("userId"))
+    formData.append('customerId', getCurrentUserId())
     formData.append('storeId', product.userId)
 
-    const userid = localStorage.getItem("userId")
-    const customerInfo = await api.get(`api/Users/${userid}`)
+    const userId = getCurrentUserId()
+    console.log(userId)
+    const customerInfo = await api.get(`api/Users/${userId}`)
     if (customerInfo.status ===200 || customerInfo.status === 201 ) {
-      formData.append('phoneNumber', customerInfo.phoneNumber)
-      formData.append('shippingAddress', customerInfo.addressHome)
+      formData.append('phoneNumber', customerInfo.data.phoneNumber)
+      formData.append('shippingAddress', customerInfo.data.addressHome)
       try {
         const response = await apiFormData.post('/api/Order', formData);
         ShowNotificationTab("Success", response.data)
@@ -102,6 +104,9 @@ function ProductDetail() {
         }
         // Xử lý lỗi cụ thể (ví dụ: hiển thị thông báo cho người dùng)
       }
+    } else {
+      setLoadingState(false)
+      ShowNotificationTab("Error", "Không tìm thấy thông tin khách hàng")
     }
 
 
@@ -128,7 +133,7 @@ function ProductDetail() {
             <p>x{quantityBuy}</p>
             <button onClick={() => handleQuantity("Increase")}>+</button>
           </div>
-            { (  product.userId !== localStorage.getItem("userId")) && (<div className={clsx(Styles.product_info_btn)}>
+            { (  product.userId !== getCurrentUserId()) && (<div className={clsx(Styles.product_info_btn)}>
             <button disabled={loadingState} onClick={addToCart}><FaCartPlus/> Add to cart</button>
             <button disabled={loadingState} onClick={addOrder}>Buy</button>
           </div>)}

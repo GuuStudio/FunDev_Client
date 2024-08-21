@@ -24,6 +24,22 @@
         display: flex;
     }
 }
+.item_header_quantity_number {
+    font-size: 0.7em;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:  -8px;
+    right: -8px;
+    color: #fff;
+    z-index: 3;
+    background-color: var(--primary);
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
 .item_header_cart_tab {
     display: none;
 }

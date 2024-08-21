@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { publicRoutes } from "./routes/route";
 import { Fragment } from "react";
-import Header from "./pages/Header/Header";
-import PublicContext from "./services/PublicContext";
+import Header from "./components/Header/Header";
+import PublicContext from "./components/PublicContext";
 
 function App() {
   return (

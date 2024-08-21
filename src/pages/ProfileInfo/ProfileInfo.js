@@ -7,10 +7,11 @@ import emptyAvatar from "~/assets/images/uploadImage.png";
 import { useContext, useEffect, useState } from "react";
 import { TbCameraShare } from "react-icons/tb";
 import { apiFormData } from "~/ultils/Api/api";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
 import { HiPencilSquare } from "react-icons/hi2";
 import UpdateAccountInfo from "~/components/UpdateAccountInfo/UpdateAccountInfo";
 import FollowersAccountInfo from "~/components/FollowersAccountInfo/FollowersAccountInfo";
+import { getCurrentUserId } from "~/services";
 
 function ProfileInfo() {
   const ShowNotificationTab = useContext(ShowNotificationContext);
@@ -144,7 +145,7 @@ function ProfileInfo() {
           </div>
         </div>
         <div className={clsx(Styles.Shoper_info_right)}>
-            < FollowersAccountInfo userId={localStorage.getItem("userId")}/>
+            < FollowersAccountInfo userId={getCurrentUserId()}/>
         </div>
       </div>
       < UpdateAccountInfo />

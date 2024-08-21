@@ -1,16 +1,21 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import clsx from "clsx";
 import Styles from "./Shop.module.scss";
-import Pagination from "~/services/Paging/Pagination";
+import Pagination from "~/components/Paging/Pagination";
 import React, { useState, useEffect} from "react";
+import { fetchProducts } from "~/services";
 
 
 function Shop() {
   const [array, setArray] = useState([]);
   useEffect(() => {
-    fetch("https://localhost:7167/api/Products")
-      .then((response) => response.json())
-      .then((json) => setArray(json));
+    const fetch = async () => {
+      const res = await fetchProducts();
+      if (res.data) {
+        setArray(res.data)
+      }
+    }
+    fetch();
   }, []);
   return (
     <div className={clsx(Styles.shop_product)}>

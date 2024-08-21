@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Styles from "./OrdersItem.module.scss";
 import api from "~/ultils/Api/api";
 import { useContext } from "react";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
 
 const OrdersItem = ({ order, currentbtn, setCurrentBtn }) => {
   const showNotification = useContext(ShowNotificationContext);
@@ -29,7 +29,7 @@ const OrdersItem = ({ order, currentbtn, setCurrentBtn }) => {
     <div className={clsx(Styles.order_info)}>
       <ul>
         <li className={clsx(Styles.content_item)}>
-          <h6><b>Store:</b>{order.customer.fullName}</h6>
+          <h6><b>Customer: </b>{order.customer.fullName}</h6>
           <nav>
             <div>
                <p>{currentbtn}:</p>{date[currentbtn]}

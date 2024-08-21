@@ -3,7 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import api, { apiFormData } from "~/ultils/Api/api";
 import Styles from "./UpdateAccountInfo.module.scss";
 import clsx from "clsx";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
+import { getCurrentUserId } from "~/services";
 
 const UpdateAccountInfo = () => {
   const showNotificationTab = useContext(ShowNotificationContext);
@@ -12,7 +13,7 @@ const UpdateAccountInfo = () => {
   const [resetForm, setResetForm] = useState(false);
 
   useEffect(() => {
-    const id = localStorage.getItem("userId");
+    const id = getCurrentUserId();
     api
       .get(`api/Users/${id}`)
       .then((response) => {
@@ -24,7 +25,7 @@ const UpdateAccountInfo = () => {
   const handleUpdateAccount = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("Id", localStorage.getItem("userId"));
+    formData.append("Id", getCurrentUserId());
     formData.append("addressHome", addressHome);
     formData.append("phoneNumber", phoneNumber);
     try {

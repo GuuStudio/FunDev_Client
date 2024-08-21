@@ -6,9 +6,9 @@ import { FaDollarSign } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
-import NoProduct from "~/services/Product/NoProduct";
+import NoProduct from "~/components/product/NoProduct";
 import DropdownItemProduct from "../DropdownItemProduct";
-import SelectProduct from "~/services/Product/SelectProduct";
+import SelectProduct from "~/components/product/SelectProduct";
 
 
 const PaginationProfile = ({ items, itemsPerPage, displayNone, resetProductList }) => {

@@ -5,7 +5,8 @@ import clsx from "clsx";
 import { useContext, useEffect, useState } from "react";
 import api, { apiFormData } from "~/ultils/Api/api";
 import { useNavigate } from "react-router-dom";
-import { ShowNotificationContext } from "~/services/PublicContext";
+import { ShowNotificationContext } from "~/components/PublicContext";
+import { getCurrentUserId } from "~/services";
 
 const CartItem = ({ cartItem, resetComponent }) => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const CartItem = ({ cartItem, resetComponent }) => {
   useEffect(() => {
     const storeId = cartItem.storeId;
     api.get(`api/Users/${storeId}`).then((res) => setStoreInfo(res.data));
-    const userid = localStorage.getItem("userId");
+    const userid = getCurrentUserId();
     api.get(`api/Users/${userid}`).then((res) => setCustomerInfo(res.data));
   }, [cartItem.storeId]);
   const handleQuantity = (type) => {
@@ -48,7 +49,7 @@ const CartItem = ({ cartItem, resetComponent }) => {
     formData.append("productId", cartItem.productId);
     formData.append("unitPrice", cartItem.product.price);
     formData.append("quantity", quantity);
-    formData.append("customerId", localStorage.getItem("userId"));
+    formData.append("customerId", getCurrentUserId());
     formData.append("storeId", cartItem.storeId);
     formData.append("phoneNumber", customerInfo.phoneNumber);
     formData.append("shippingAddress", customerInfo.addressHome);
