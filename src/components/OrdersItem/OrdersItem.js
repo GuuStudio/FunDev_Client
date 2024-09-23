@@ -29,7 +29,8 @@ const OrdersItem = ({ order, currentbtn, setCurrentBtn }) => {
     <div className={clsx(Styles.order_info)}>
       <ul>
         <li className={clsx(Styles.content_item)}>
-          <h6><b>Customer: </b>{order.customer.fullName}</h6>
+          <h6><b>Customer: </b>{order.customer.fullName} </h6>
+          <div>Phone: {order.phoneNumber}</div>
           <nav>
             <div>
                <p>{currentbtn}:</p>{date[currentbtn]}

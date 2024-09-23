@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 
 import NoCartItem from "~/components/NoCartItem/NoCartItem";
 import api from "~/ultils/Api/api";
-const CartTab = ({setCartItemsLength}) => {
+import { useNotificateStore } from "~/store";
+const CartTab = () => {
+  const setCarts = useNotificateStore((store) => store.setCarts)
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   function handleNavigateCart() {
@@ -13,10 +15,10 @@ const CartTab = ({setCartItemsLength}) => {
   }
   useEffect(() => {
     api.get("/api/CartItems").then((res) => {
-      setCartItems(res.data.slice(0,5))
-      setCartItemsLength(res.data.length)
+      setCartItems(res.data.slice(0, 5))
+      setCarts(res.data.length)
     });
-  }, [setCartItemsLength]);
+  }, [setCarts]);
   return (
     <div className={clsx(Styles.wrap)}>
       <h1>New products added</h1>

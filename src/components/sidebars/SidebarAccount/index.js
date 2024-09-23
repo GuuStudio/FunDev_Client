@@ -39,7 +39,9 @@ function SidebarAccount() {
     } 
     if (pathname.includes("ordering")) {
       setCurrentBtn("Ordering")
-    } 
+    } if (pathname.includes("profileInfo")) {
+      setCurrentBtn("Account")
+    }
   },[pathname])
   return (
     <aside className={clsx(styles.wraper)}>
