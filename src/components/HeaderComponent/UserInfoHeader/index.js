@@ -9,10 +9,13 @@ import { FaRegBell } from "react-icons/fa";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import CartTab from "../CartTab/CartTab";
 import NotificationBell from "../NotificationBell/NotificationBell";
+import { useNotificateStore } from "~/store";
+
 
 const UserInfoHeader = ({ info, startLoginOrRegister }) => {
-  const [ordersLength, setOrdersLength] = useState("0"); 
-  const [cartItemsLength, setCartItemsLength] = useState("0"); 
+
+  const [ordersLength, setOrdersLength] = useState("0");
+  const cart = useNotificateStore(sto => sto.cart)
   const ShowNotificationTab = useContext(ShowNotificationContext);
   const navigate = useNavigate();
   const logOut = (e) => {
@@ -33,16 +36,16 @@ const UserInfoHeader = ({ info, startLoginOrRegister }) => {
     <div className={clsx(Styles.wrap)}>
       <div className={clsx(Styles.item_header)}>
         <FaRegBell />
-      { ordersLength > 0 && ( <p className={clsx(Styles.item_header_quantity_number)}>{ordersLength}</p>)}
+        {ordersLength > 0 && (<p className={clsx(Styles.item_header_quantity_number)}>{ordersLength}</p>)}
         <div className={clsx(Styles.item_header_cart_tab)}>
-         <NotificationBell setOrdersLength={setOrdersLength}/>
+          <NotificationBell setOrdersLength={setOrdersLength} />
         </div>
       </div>
       <div className={clsx(Styles.item_header)}>
         <PiShoppingCartSimpleBold />
-        { ordersLength > 0 && ( <p className={clsx(Styles.item_header_quantity_number)}>{cartItemsLength}</p>)}
+        {cart > 0 && (<p className={clsx(Styles.item_header_quantity_number)}>{cart}</p>)}
         <div className={clsx(Styles.item_header_cart_tab)}>
-         <CartTab setCartItemsLength={setCartItemsLength} />
+          <CartTab />
         </div>
       </div>
       <div className={clsx(Styles.logo_user)}>

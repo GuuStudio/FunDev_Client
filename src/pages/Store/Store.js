@@ -38,7 +38,10 @@ function Store() {
     if (localStorage.getItem("authToken") != null) {
       checkFollow()
     }
-
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
 
   }, [id]);
   const handleFollow =  async () => {

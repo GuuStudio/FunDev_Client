@@ -2,15 +2,17 @@ import styles from "./Header.module.scss";
 import clsx from "clsx";
 import images from "~/assets/images";
 import "bootstrap/dist/css/bootstrap.min.css"; // lấy styles của version bootstrap mà bạn install.
-import { FaSearch} from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 import { Link, useNavigate } from "react-router-dom";
-import {  useEffect, useState } from "react";
-import UserInfoHeader from "~/components/HeaderComponent/UserInfoHeader";
-import BtnLogin from "~/components/HeaderComponent/BtnLogin";
+import { useEffect, useState } from "react";
+import UserInfoHeader from "~/components/headerComponent/UserInfoHeader";
+import BtnLogin from "~/components/headerComponent/BtnLogin";
 import LoginOrRegister from "~/components/account/LoginOrRegister";
 
+
 function Header() {
+
   const navigate = useNavigate()
   const [stateAccount, setStateAccount] = useState("");
   const [userInfo, setUserInfo] = useState(null);
@@ -53,11 +55,11 @@ function Header() {
           </div>
         </div>
         <div className={clsx(styles.accoutManager)}>
-            {userInfo != null ? (
-              <UserInfoHeader info={userInfo} startLoginOrRegister={startLoginOrRegister}></UserInfoHeader>
-            ) : (
-                <BtnLogin  startLoginOrRegister={startLoginOrRegister} />
-            )}
+          {userInfo != null ? (
+            <UserInfoHeader info={userInfo} startLoginOrRegister={startLoginOrRegister}></UserInfoHeader>
+          ) : (
+            <BtnLogin startLoginOrRegister={startLoginOrRegister} />
+          )}
         </div>
         <LoginOrRegister
           state={stateAccount}

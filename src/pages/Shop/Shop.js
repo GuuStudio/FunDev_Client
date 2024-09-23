@@ -16,6 +16,10 @@ function Shop() {
       }
     }
     fetch();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, []);
   return (
     <div className={clsx(Styles.shop_product)}>
